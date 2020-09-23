@@ -1,6 +1,11 @@
 import numpy as np
 import pandas as pd
+import datetime as dt
 from sklearn.metrics import mean_squared_log_error
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+from matplotlib import ticker
+import matplotlib.dates as mdates
 
 # Function to reduce the DF size
 def reduce_mem_usage(df, verbose=True):
@@ -100,17 +105,20 @@ def plotHeatmap(group,df,cols):
 
     df: input dataframe with "timestamp", "buiding_id", "rmsle_scaled" and group features\n
     group: feature to divide in subplots\n
-    colos: number of columns to distribute subplots\n
+    cols: number of columns to distribute subplots\n
 
     Return figure.
     """
 
     group_name = list(df[group].unique())
     print(group_name)
+
     plots = len(group_name)
     print(plots)
 
-    fig, axes = plt.subplots(int(plots/cols), cols, sharex = True, sharey=False, figsize=(20,10))
+    rows = int(plots/cols) if plots % 2 == 0 else int(plots/cols)+1
+
+    fig, axes = plt.subplots(rows, cols, sharex = True, sharey=False, figsize=(20,10))
     axes = axes.flatten()
 
     for i,j in enumerate(group_name):
@@ -128,9 +136,7 @@ def plotHeatmap(group,df,cols):
 
         # Get the data
         y = np.linspace(0, len(pivot_df), len(pivot_df)+1)
-        #print(f"y shape: {y.shape}")
         x = mdates.drange(pivot_df.columns[0], pivot_df.columns[-1] + dt.timedelta(days=2), dt.timedelta(days=1))
-        #print(f"x shape: {x.shape}")
 
         # Plot
         ax = axes[i]
@@ -141,7 +147,7 @@ def plotHeatmap(group,df,cols):
         # Axis
         ax.axis('tight') 
         ax.xaxis_date() # Set up as dates
-        plt.locator_params(axis='x', nbins=24)
+        #plt.locator_params(axis='x', nbins=24)
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%b-%y')) # set date's format
         ax.set_yticklabels([]) # omit building ID on y axis
         ax.set_title(f"{j}", fontdict={'fontsize':10})
