@@ -142,7 +142,7 @@ def plot_heatmap_1group(group,df,cols):
         ax = axes[i]
         data = np.array(pivot_df)
         #print(f"data shape: {data.shape}")
-        cmap = plt.get_cmap('gist_rainbow') #plt.get_cmap('YlOrRd')
+        cmap = plt.get_cmap('YlOrRd') #plt.get_cmap('gist_rainbow')
         qmesh = ax.pcolormesh(x, y, data, cmap=cmap, rasterized=True, vmin=0, vmax=1)
         # Axis
         ax.axis('tight') 
