@@ -1,6 +1,5 @@
 temp
-data/original/top50_solution
-data/processed/arrays
+figures
 data/processed/merged
 
 # Byte-compiled / optimized / DLL files
