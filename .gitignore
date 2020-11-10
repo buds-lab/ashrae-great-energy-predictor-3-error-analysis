@@ -1,5 +1,5 @@
 temp
-figures
+figures/publication
 data/processed/merged
 
 # Byte-compiled / optimized / DLL files
@@ -128,3 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 notebooks/RMSLE_test.ipynb
+notebooks/winner_solution_electricity_site3.csv
+notebooks/winner_solution_electricity_site9.csv
+notebooks/winner_solution_hotwater_site10.csv
+notebooks/xx_residuals-summary.ipynb
+notebooks/xx_get-original-residuals-cloud.ipynb
