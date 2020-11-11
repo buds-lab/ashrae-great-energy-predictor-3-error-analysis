@@ -151,6 +151,9 @@ def plot_heatmap_1group(group,df,cols):
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%b-%y')) # set date's format
         ax.set_yticklabels([]) # omit building ID on y axis
         ax.set_title(f"{j}", fontdict={'fontsize':10})
+    
+    if plots % 2 != 0:
+        fig.delaxes(axes[-1])
 
     # Color bar  
     cbaxes = fig.add_axes([0.017, 0.07, 0.975, 0.01])
