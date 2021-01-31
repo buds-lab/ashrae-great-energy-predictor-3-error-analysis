@@ -99,13 +99,15 @@ def complete_data(df, start_date, end_date):
 
 
 # Function to plot heatmaps grouped by 1 feature.
-def plot_heatmap_1group(group,df,cols):
+def plot_heatmap_1group(group,df,cols,start,end):
 
     """This function plots data in the df, one subplot per element in "group". Distributed in "cols" columns
 
     df: input dataframe with "timestamp", "buiding_id", "rmsle_scaled" and group features\n
     group: feature to divide in subplots\n
     cols: number of columns to distribute subplots\n
+    start: start date in the format "YYYY-MM-DD"\n
+    end: end date in the format "YYYY-MM-DD"\n
 
     Return figure.
     """
@@ -124,7 +126,7 @@ def plot_heatmap_1group(group,df,cols):
     for i,j in enumerate(group_name):
 
         # Filter data
-        df_grouped = df[df[group] == j]
+        df_grouped = df[(df[group] == j) & (df.timestamp >= start) & (df.timestamp <= end)]
 
         # Pivot data
         pivot_df = df_grouped.pivot(columns="timestamp", index="building_id", values="rmsle_scaled")
@@ -136,7 +138,8 @@ def plot_heatmap_1group(group,df,cols):
 
         # Get the data
         y = np.linspace(0, len(pivot_df), len(pivot_df)+1)
-        x = mdates.drange(pivot_df.columns[0], pivot_df.columns[-1] + dt.timedelta(days=2), dt.timedelta(days=1))
+        #x = mdates.drange(pivot_df.columns[0], pivot_df.columns[-1] + dt.timedelta(days=2), dt.timedelta(days=1))
+        x = pd.date_range(start=start, end=end)
 
         # Plot
         ax = axes[i]
