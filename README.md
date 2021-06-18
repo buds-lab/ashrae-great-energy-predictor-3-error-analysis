@@ -1,5 +1,7 @@
-# Where machine learning fails for building energy prediction
+# Limitations of machine learning for building energy prediction
 
-## ASHRAE GEPIII Kagglecompetition model error analysis and improvement suggestions
+## ASHRAE GEPIII Kaggle competition error analysis
 
 Analysis of the Time Series Residuals of the Great Energy Predictor III competition
+
+Details found in the Wiki
