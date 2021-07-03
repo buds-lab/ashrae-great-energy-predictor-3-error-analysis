@@ -132,3 +132,4 @@ notebooks/winner_solution_electricity_site9.csv
 notebooks/winner_solution_hotwater_site10.csv
 notebooks/xx_residuals-summary.ipynb
 notebooks/xx_get-original-residuals-cloud.ipynb
+.vscode/settings.json
